@@ -4,6 +4,7 @@ import {
   Asset,
   ImagePickerResponse,
 } from 'react-native-image-picker';
+import {uploadImage} from './api';
 
 const selectImage = () => {
   launchImageLibrary({mediaType: 'photo'}, (response: ImagePickerResponse) => {
@@ -16,7 +17,13 @@ const selectImage = () => {
       const source = {uri: firstAsset.uri};
       // traiter l'Image
 
-      console.log(source);
+      try {
+        uploadImage(source.uri as string).then(link => {
+          console.log('Image uploaded: ', link);
+        });
+      } catch (error) {
+        Alert.alert('Error', 'Error uploading image');
+      }
       return source.uri;
     }
   });
