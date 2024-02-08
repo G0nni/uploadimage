@@ -4,19 +4,11 @@ import selectImage from './src/components/imagepicker';
 import {requestGalleryPermission} from './src/components/requestpermissions';
 
 const App = () => {
-  requestGalleryPermission();
+  console.log('Return value:', selectImage());
+
   return (
     <SafeAreaView>
-      <Button
-        title="Select Image"
-        onPress={() => {
-          requestGalleryPermission().then(hasPermission => {
-            if (hasPermission) {
-              selectImage();
-            }
-          });
-        }}
-      />
+      <Button title="Select Image" onPress={selectImage} />
     </SafeAreaView>
   );
 };

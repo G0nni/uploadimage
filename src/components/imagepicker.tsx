@@ -17,6 +17,7 @@ const selectImage = () => {
       // traiter l'Image
 
       console.log(source);
+      return source.uri;
     }
   });
 };
